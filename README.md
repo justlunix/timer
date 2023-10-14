@@ -67,7 +67,6 @@ $taskComparison = Timer::compare($issetTestTask->getTaskData(), $arraySearchTest
 // Invalidate caches via
 Timer::$invalidateCaches = true;
 
-
 $task = Timer::task('Fetching Customer Data From API', function() {
     // fetching...
 }, cacheUntil: new \DateTime('tomorrow'));
