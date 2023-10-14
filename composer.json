@@ -1,0 +1,20 @@
+{
+    "name": "justlunix/timer",
+    "description": "A tool to track execution times of tasks",
+    "autoload": {
+        "psr-4": {
+            "Lunix\\Timer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Luca Kermas",
+            "email": "lunix@luca-kermas.de"
+        }
+    ],
+    "require": {
+        "symfony/cache": "^6.3",
+        "ausi/slug-generator": "^1.1",
+        "nesbot/carbon": "^2.71"
+    }
+}
