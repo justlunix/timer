@@ -56,7 +56,6 @@ class Timer
 
         self::throwEvent(new PostTaskExecutedEvent($taskData));
 
-
         $parent && $parent->addChild($response);
 
         return $response;

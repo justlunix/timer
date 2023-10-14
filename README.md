@@ -79,12 +79,12 @@ $task = Timer::task('Fetching Customer Data From API', function() {
 #### Export statistics
 
 ```php
-// Export all tasks at the end with
+// TODO: Export all tasks at the end with
 Timer::exportAsFile(__DIR__ . '/timer.txt');
 
-// or enable live logging into a file
+// TODO: or enable live logging into a file
 Timer::enableLiveLogging(__DIR__ . '/timer.txt');
 
-// or log to Spatie Ray!
+// TODO: or log to Spatie Ray!
 Timer::enableRay();
 ```
