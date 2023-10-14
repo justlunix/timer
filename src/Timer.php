@@ -33,6 +33,7 @@ class Timer
 
         $cache = new FilesystemAdapter();
         $response->cacheKey = $slugGenerator->generate("timer:task-$name");
+        $response->cacheUntil = $cacheUntil;
 
         self::throwEvent(new PreTaskExecutedEvent($taskData));
 
@@ -54,6 +55,9 @@ class Timer
         self::$tasks[$name]->endTime = microtime(true);
 
         self::throwEvent(new PostTaskExecutedEvent($taskData));
+
+
+        $parent && $parent->addChild($response);
 
         return $response;
     }

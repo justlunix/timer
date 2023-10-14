@@ -2,13 +2,15 @@
 
 namespace Lunix\Timer;
 
+use DateTime;
 use Lunix\Timer\Data\TaskData;
 
 class TaskResponse
 {
-    public string $cacheKey = '';
     public bool $cacheHit = false;
-    public $result = null;
+    public string $cacheKey = '';
+    public ?DateTime $cacheUntil = null;
+    public mixed $result = null;
 
     public function __construct(
         private readonly TaskData $taskData
@@ -19,5 +21,15 @@ class TaskResponse
     public function getTaskData(): TaskData
     {
         return $this->taskData;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'cacheKey' => $this->cacheKey,
+            'cacheHit' => $this->cacheHit,
+            'cacheUntil' => $this->cacheUntil?->format('d.m.Y H:i:s'),
+            'task' => $this->taskData->toArray()
+        ];
     }
 }
