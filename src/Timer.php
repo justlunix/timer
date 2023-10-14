@@ -17,6 +17,7 @@ class Timer
     public static bool $invalidateCaches = false;
     private static array $tasks = [];
     private static array $eventSubscriber = [];
+    private static array $responses = [];
 
     public static function task(string $name, callable $callback, ?float $expectedTime = null, ?DateTime $cacheUntil = null, ?TaskData $parent = null): TaskResponse
     {
@@ -58,7 +59,24 @@ class Timer
 
         $parent && $parent->addChild($response);
 
-        return $response;
+        return self::$responses[] = $response;
+    }
+
+    public static function exportAsFile(string $path, bool $override = false, bool $prettyPrint = true): bool
+    {
+        if (!$override && is_file($path)) {
+            return false;
+        }
+
+        $data = array_map(fn(TaskResponse $response) => $response->toArray(), self::$responses);
+
+        if ($prettyPrint) {
+            $res = file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT));
+        } else {
+            $res = file_put_contents($path, json_encode($data));
+        }
+
+        return $res !== false;
     }
 
     public static function compare(TaskData $taskDataA, TaskData $taskDataB): TaskComparison
