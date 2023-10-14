@@ -58,7 +58,7 @@ $arraySearchTestTask = Timer::task('array_search() performance', function () {
     // Implement performance test
 });
 
-$taskComparison = Timer::compare($issetTestTask, $arraySearchTestTask);
+$taskComparison = Timer::compare($issetTestTask->getTaskData(), $arraySearchTestTask->getTaskData());
 ```
 
 #### Cache task results
