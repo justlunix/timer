@@ -7,8 +7,8 @@ use Lunix\Timer\Data\TaskData;
 class TaskComparison
 {
     public function __construct(
-        private TaskData $taskDataA,
-        private TaskData $taskDataB,
+        private readonly TaskData $taskDataA,
+        private readonly TaskData $taskDataB,
     )
     {
     }
