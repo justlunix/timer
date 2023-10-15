@@ -7,7 +7,7 @@ A simple tool to track execution times of tasks.
 Simply install the package via composer and you're good to go!
 
 ```bash
-composer install justlunix/timer
+composer require justlunix/timer
 ```
 
 ### Usage
